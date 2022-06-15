@@ -1,0 +1,16 @@
+{
+    "files.associations": {
+        "cmath": "cpp",
+        "*.tcc": "cpp",
+        "tuple": "cpp",
+        "type_traits": "cpp",
+        "functional": "c",
+        "stdio.h": "c",
+        "memory_resource": "c",
+        "memory": "c",
+        "stdlib.h": "c",
+        "math.h": "c",
+        "random": "c"
+    },
+    "terminal.integrated.fontFamily": "Menlo for Powerline",
+}
