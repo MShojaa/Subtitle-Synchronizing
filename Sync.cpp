@@ -22,8 +22,10 @@ void SetTime(struct Sync *Time);
 
 int main()
 {
-    string Address = "./subtitle.srt";
-    string Output_Address = "./test1.srt";
+    string Address;
+    string Output_Address;
+    // string Address = "./subtitle.srt";
+    // string Output_Address = "./test1.srt";
 
     struct Sync Start;
     struct Sync Stop;
@@ -33,7 +35,10 @@ int main()
     string line;
     streampos oldpos;
 
-    cout << "Which one do you prefer?";
+    cout << "Enter the .srt file address: ";
+    cin >> Address;
+
+    cout << "\nWhich one do you prefer?";
     do
     {
         cout << "\n1. Forward(+)\n2. Backward(-)\n(1/2): ";
@@ -77,6 +82,11 @@ int main()
         time_inout = Hour * 3600 + Min * 60 + Sec + Msec / 1000.0;
     }
     time_inout *= sign;
+    Output_Address = Address;
+    if (sign == 1)
+        Output_Address = Output_Address.erase(Output_Address.length() - 4) + " -" + to_string(time_inout) + "s.srt";
+    else
+        Output_Address = Output_Address.erase(Output_Address.length() - 4) + " +" + to_string(time_inout) + "s.srt";
 
     // Read from the text file
     ofstream Output_Sub(Output_Address);
