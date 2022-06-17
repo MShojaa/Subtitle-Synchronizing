@@ -22,21 +22,56 @@ void SetTime(struct Sync *Time);
 
 int main()
 {
+    string Address = "./subtitle.srt";
+    string Output_Address = "./test1.srt";
+
     struct Sync Start;
     struct Sync Stop;
 
-    int n = 1;
-    float time_inout = 0;
-
-    string Address = "./subtitle.srt";
-    string Output_Address = "./test1.srt";
+    int n, sign;
+    float time_inout;
     string line;
-    string eol = "\n";
     streampos oldpos;
+
+    do
+    {
+        cout << "Which one do you prefer?\n1. Forward(+)\n2. Backward(-)\n(1/2): ";
+        cin >> n;
+    } while (n != 1 && n != 2);
+    if (n == 1)
+        sign = -1;
+    do
+    {
+        cout << "1. Time in second(s)\n2. Time in seperate mode\n(1/2): ";
+        cin >> n;
+    } while (n != 1 && n != 2);
+    if (n == 1)
+    {
+        cout << "Time (sec): ";
+        cin >> time_inout;
+    }
+    else
+    {
+        int Hour, Min, Sec, Msec;
+        cout << "Hour(s): ";
+        cin >> Hour;
+        cout << "Minute(s): ";
+        cin >> Min;
+        cout << "Second(s): ";
+        cin >> Sec;
+        cout << "Millisecond(s): ";
+        cin >> Msec;
+        time_inout = Hour * 3600 + Min * 60 + Sec + Msec / 1000.0;
+        cout << time_inout;
+    }
+    time_inout *= sign;
 
     // Read from the text file
     ofstream Output_Sub(Output_Address);
     ifstream Sub(Address);
+
+    n = 1;
+    // For the first sub that doesn't fit the algorithm
     {
         getline(Sub, line);
         getline(Sub, line);
