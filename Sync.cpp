@@ -28,41 +28,53 @@ int main()
     struct Sync Start;
     struct Sync Stop;
 
-    int n, sign;
+    int n, sign = 1;
     float time_inout;
     string line;
     streampos oldpos;
 
+    cout << "Which one do you prefer?";
     do
     {
-        cout << "Which one do you prefer?\n1. Forward(+)\n2. Backward(-)\n(1/2): ";
+        cout << "\n1. Forward(+)\n2. Backward(-)\n(1/2): ";
         cin >> n;
     } while (n != 1 && n != 2);
     if (n == 1)
         sign = -1;
     do
     {
-        cout << "1. Time in second(s)\n2. Time in seperate mode\n(1/2): ";
+        cout << "\n1. Time in second(s)\n2. Time in seperate mode\n(1/2): ";
         cin >> n;
     } while (n != 1 && n != 2);
     if (n == 1)
     {
-        cout << "Time (sec): ";
+        cout << "\nTime (sec): ";
         cin >> time_inout;
     }
     else
     {
         int Hour, Min, Sec, Msec;
-        cout << "Hour(s): ";
-        cin >> Hour;
-        cout << "Minute(s): ";
-        cin >> Min;
-        cout << "Second(s): ";
-        cin >> Sec;
-        cout << "Millisecond(s): ";
-        cin >> Msec;
+        do
+        {
+            cout << "Hour(s): ";
+            cin >> Hour;
+        } while (Hour < 0 && Hour > 9);
+        do
+        {
+            cout << "Minute(s): ";
+            cin >> Min;
+        } while (Min < 0 && Min > 59);
+        do
+        {
+            cout << "Second(s): ";
+            cin >> Sec;
+        } while (Sec < 0 && Sec > 59);
+        do
+        {
+            cout << "Millisecond(s): ";
+            cin >> Msec;
+        } while (Msec < 0 && Msec > 999);
         time_inout = Hour * 3600 + Min * 60 + Sec + Msec / 1000.0;
-        cout << time_inout;
     }
     time_inout *= sign;
 
